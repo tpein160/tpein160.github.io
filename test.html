@@ -1,7 +1,10 @@
-<meta charset="UTF-8"><body><script language="decker">
+<meta charset="UTF-8"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><body><script language="decker">
 {deck}
 version:1
-card:3
+card:0
 size:[512,342]
 locked:1
 name:"backdoors-talk.deck"
@@ -102,12 +105,12 @@ drom_toupper=x=>x.replace(/([ßẞ])|([^ßẞ])/g,(_,s,e)=>s?'ẞ': e.toUpperCas
 drom_tolower=x=>x.replace(/([ßẞ])|([^ßẞ])/g,(_,s,e)=>s?'ß': e.toLowerCase())
 clchars=x=>x.normalize("NFC").replace(
  /(\r)|(\t)|([''])|([""])|([^\x20-\x7E\n…ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿĀāĂăĄąĆćĒēĘęĪīıŁłŃńŌōŐőŒœŚśŠšŪūŰűŸŹźŻżŽžȘșȚțẞ¡¿«»€°]$)/gm,
- (_,r,t,sq,dq)=>r?'': t?' ': sq?`'`: dq?`"`: '�'
+ (_,r,t,sq,dq)=>r?'': t?' ': sq?`'`: dq?`"`: ' '
 )
 drom_chars=`…ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿĀāĂăĄąĆćĒēĘęĪīıŁłŃńŌōŐőŒœŚśŠšŪūŰűŸŹźŻżŽžȘșȚțẞ¡¿«»€°`.split('')
 drom_idx=new Map();drom_chars.forEach((c,i)=>drom_idx.set(c.charCodeAt(0),127+i))
 drom_to_ord=x=>{const i=x.charCodeAt(0);return i==10||(i>=32&&i<=126)?i: drom_idx.get(i)||255}
-drom_from_ord=x=>x==9?' ': x==10?'\n': x==13?'': (x>=32&&x<=126)?String.fromCharCode(x): (x>=127&&x<=240)?drom_chars[x-127]: '�'
+drom_from_ord=x=>x==9?' ': x==10?'\n': x==13?'': (x>=32&&x<=126)?String.fromCharCode(x): (x>=127&&x<=240)?drom_chars[x-127]: ' '
 wnum=y=>{
  let w='',d='',s=y<0?(y=-y,'-'):'',i=Math.floor(y);y=Math.round((y-Math.floor(y))*1000000);if(y>=1000000)i++
  while(i>0){w=(0|i%10)+w,i=i/10}for(let z=0;z<6;z++){d=(0|y%10)+d,y=y/10}
